@@ -1,0 +1,9 @@
+D:\FSD\Output\Task_Api\TaskManagerService\TaskManager.Business\bin\Debug\TaskManager.Business.dll
+D:\FSD\Output\Task_Api\TaskManagerService\TaskManager.Business\bin\Debug\TaskManager.Business.pdb
+D:\FSD\Output\Task_Api\TaskManagerService\TaskManager.Business\bin\Debug\EntityFramework.dll
+D:\FSD\Output\Task_Api\TaskManagerService\TaskManager.Business\bin\Debug\TaskManager.Data.dll
+D:\FSD\Output\Task_Api\TaskManagerService\TaskManager.Business\bin\Debug\TaskManager.Data.pdb
+D:\FSD\Output\Task_Api\TaskManagerService\TaskManager.Business\bin\Debug\EntityFramework.xml
+D:\FSD\Output\Task_Api\TaskManagerService\TaskManager.Business\obj\Debug\TaskManager.Business.csprojResolveAssemblyReference.cache
+D:\FSD\Output\Task_Api\TaskManagerService\TaskManager.Business\obj\Debug\TaskManager.Business.dll
+D:\FSD\Output\Task_Api\TaskManagerService\TaskManager.Business\obj\Debug\TaskManager.Business.pdb
