@@ -1,0 +1,21 @@
+<header>
+  <h1>Task Manager</h1>
+</header>
+<nav class="navbar navbar-expand-sm">
+  <!-- <div class="">
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <p class="text-center" style="font: 1em sans-serif; font-style: italic;">Welcome User! What do you want to perform now? </p>
+    <div class="collapse navbar-collapse" id="navbarCollapse" style="padding-left: 0;">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" routerLinkActive="Active">
+          <a [routerLink]="['/add']" class="nav-link active">Add Task</a>
+        </li>
+        <li class="nav-item" routerLinkActive="Active">
+          <a [routerLink]="['/view']" class="nav-link">View Task</a>
+        </li>
+      </ul>
+    </div>
+  <!-- </div> -->
+</nav>
