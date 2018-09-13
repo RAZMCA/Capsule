@@ -32,8 +32,6 @@
 				return this.slice(i)[0];
 			},
 			contains: function(d){
-				// Array.indexOf is not cross-browser;
-				// $.inArray doesn't work with Dates
 				var val = d && d.valueOf();
 				for (var i=0, l=this.length; i < l; i++)
 					if (this[i].valueOf() === val)
@@ -138,9 +136,6 @@
 			this._o = $.extend({}, this._o, opts);
 			// Processed options
 			var o = this.o = $.extend({}, this._o);
-
-			// Check if "de-DE" style date is available, if not language should
-			// fallback to 2 letter code eg "de"
 			var lang = o.language;
 			if (!dates[lang]){
 				lang = lang.split('-')[0];
