@@ -11,6 +11,23 @@ namespace TaskManager.Data.Repository
     public class TaskRepository
     {
         /// <summary>
+        /// GetParentTask
+        /// </summary>
+        /// <returns></returns>
+        public List<TaskModel> GetParentTask()
+        {
+            TaskManagerEntities entity = new TaskManagerEntities();
+            var parentTasks = (from task in entity.ParentTasks
+                         select new TaskModel()
+                         {
+                             ParentId = task.Parent_Id,
+                             ParentTask = task.Parent_Task
+                         }).ToList();
+
+            return parentTasks;
+        }
+
+        /// <summary>
         /// GetAllTask
         /// </summary>
         /// <returns></returns>

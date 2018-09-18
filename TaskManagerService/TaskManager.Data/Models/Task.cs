@@ -20,6 +20,7 @@ namespace TaskManager.Data.Models
         public Nullable<System.DateTime> Start_Date { get; set; }
         public Nullable<System.DateTime> End_Date { get; set; }
         public Nullable<int> Priority { get; set; }
+        public Nullable<int> IsActive { get; set; }
     
         public virtual ParentTask ParentTask { get; set; }
     }

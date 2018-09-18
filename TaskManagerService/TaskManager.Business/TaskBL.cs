@@ -11,6 +11,12 @@ namespace TaskManager.Business
 {
     public class TaskBL
     {
+        public List<TaskModel> GetParentTask()
+        {
+            TaskRepository obj = new TaskRepository();
+            var result = obj.GetParentTask();
+            return result;
+        }
         public List<TaskModel> GetAllTask()
         {
             TaskRepository obj = new TaskRepository();
@@ -68,30 +74,33 @@ namespace TaskManager.Business
 
                 if (testModels != null)
                 {
-                    Dictionary<string, object> dic = (Dictionary<string, object>)testModels;
-                    foreach (var citem in dic)
-                    {
-                        Dictionary<string, object> dic1 = (Dictionary<string, object>)citem.Value;
-                        object value;
-                        if (dic1.TryGetValue("Task", out value))
-                            taskModel.Task = value.ToString();
-                        if (dic1.TryGetValue("ParentTask", out value))
-                            taskModel.ParentTask = value.ToString();
-                        if (dic1.TryGetValue("Priority", out value))
-                            taskModel.Priority = string.IsNullOrWhiteSpace(value.ToString()) ? 0 : Convert.ToInt16(value);
-                        if (dic1.TryGetValue("StartDate", out value))
-                            taskModel.StartDateString = value.ToString();
-                        if (dic1.TryGetValue("EndDate", out value))
-                            taskModel.EndDateString = value.ToString();
-                        if (dic1.TryGetValue("TaskId", out value))
-                            taskModel.TaskId = string.IsNullOrWhiteSpace(value.ToString())?0:Convert.ToInt16(value);
-                        if (dic1.TryGetValue("PriorityFrom", out value))
-                            taskModel.PriorityFrom = string.IsNullOrWhiteSpace(value.ToString()) ? 0 : Convert.ToInt16(value);
-                        if (dic1.TryGetValue("PriorityTo", out value))
-                            taskModel.PriorityTo = string.IsNullOrWhiteSpace(value.ToString()) ? 0 : Convert.ToInt16(value);
+                    //Dictionary<string, object> dic = (Dictionary<string, object>)testModels;
+                    //foreach (var citem in dic)
+                    //{
+                    //    if (citem.Value != null && string.IsNullOrEmpty(citem.Value.ToString()))
+                    //    {
+                    Dictionary<string, object> dic1 = (Dictionary<string, object>)testModels;
+                    object value;
+                    if (dic1.TryGetValue("Task", out value))
+                        taskModel.Task = value.ToString();
+                    if (dic1.TryGetValue("ParentTask", out value))
+                        taskModel.ParentTask = value.ToString();
+                    if (dic1.TryGetValue("Priority", out value))
+                        taskModel.Priority = string.IsNullOrWhiteSpace(value.ToString()) ? 0 : Convert.ToInt16(value);
+                    if (dic1.TryGetValue("Start_Date", out value))
+                        taskModel.StartDateString = value.ToString();
+                    if (dic1.TryGetValue("End_Date", out value))
+                        taskModel.EndDateString = value.ToString();
+                    if (dic1.TryGetValue("TaskId", out value))
+                        taskModel.TaskId = string.IsNullOrWhiteSpace(value.ToString()) ? 0 : Convert.ToInt16(value);
+                    if (dic1.TryGetValue("PriorityFrom", out value))
+                        taskModel.PriorityFrom = string.IsNullOrWhiteSpace(value.ToString()) ? 0 : Convert.ToInt16(value);
+                    if (dic1.TryGetValue("PriorityTo", out value))
+                        taskModel.PriorityTo = string.IsNullOrWhiteSpace(value.ToString()) ? 0 : Convert.ToInt16(value);
 
-                        return taskModel;
-                    }
+                    return taskModel;
+                    //    }
+                    //}
                 }
             }
 

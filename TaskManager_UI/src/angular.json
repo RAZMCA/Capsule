@@ -1,9 +1,9 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "$schema": "../node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "PROJECT-TaskManager": {
+    "TaskManager": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/PROJECT-TaskManager",
+            "outputPath": "dist/askManager",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -51,18 +51,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "PROJECT-TaskManager:build"
+            "browserTarget": "askManager:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "PROJECT-TaskManager:build:production"
+              "browserTarget": "TaskManager:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "PROJECT-TaskManager:build"
+            "browserTarget": "TaskManager:build"
           }
         },
         "test": {
@@ -95,7 +95,7 @@
         }
       }
     },
-    "PROJECT-TaskManager-e2e": {
+    "TaskManager-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,11 +103,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "PROJECT-TaskManager:serve"
+            "devServerTarget": "TaskManager:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "PROJECT-TaskManager:serve:production"
+              "devServerTarget": "TaskManager:serve:production"
             }
           }
         },
@@ -123,5 +123,5 @@
       }
     }
   },
-  "defaultProject": "PROJECT-TaskManager"
+  "defaultProject": "TaskManager"
 }

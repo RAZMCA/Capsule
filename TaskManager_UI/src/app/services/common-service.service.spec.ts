@@ -1,16 +1,16 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
-import { SharedService } from './sharedService';
+import { CommonServiceService } from './common-service.service';
 
-describe('SharedService', () => {
+describe('CommonServiceService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
-      providers: [SharedService]
+      providers: [CommonServiceService]
     });
   });
 
-  it('should be created', inject([SharedService], (service: SharedService) => {
+  it('should be created', inject([CommonServiceService], (service: CommonServiceService) => {
     expect(service).toBeTruthy();
   }));
 });

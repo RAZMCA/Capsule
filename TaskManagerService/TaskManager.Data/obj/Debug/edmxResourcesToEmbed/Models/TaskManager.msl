@@ -12,6 +12,7 @@
     <EntitySetMapping Name="Tasks">
       <EntityTypeMapping TypeName="TaskManagerModel.Task">
         <MappingFragment StoreEntitySet="Task">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           <ScalarProperty Name="Task_Id" ColumnName="Task_Id" />
           <ScalarProperty Name="Parent_Id" ColumnName="Parent_Id" />
           <ScalarProperty Name="Task1" ColumnName="Task" />

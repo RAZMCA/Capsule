@@ -13,7 +13,15 @@ namespace TaskManager.Controllers
 {
     public class TaskController : ApiController
     {
-        TaskBL _taskBL;
+        TaskBL _taskBL; 
+
+        [HttpGet]
+        public List<TaskModel> GetParentTask()
+        {
+            _taskBL = new TaskBL();
+            var result = _taskBL.GetParentTask();
+            return result;
+        }
 
         [HttpGet]
         public List<TaskModel> GetAllTask()
@@ -37,17 +45,17 @@ namespace TaskManager.Controllers
             return result;
         }
         [HttpPost]
-        public bool AddTask(object taskModel)
+        public bool InsertTaskDetails(object task)
         {
             _taskBL = new TaskBL();
-            _taskBL.AddTask(taskModel);
+            _taskBL.AddTask(task);
             return true;
         }
         [HttpPost]
-        public bool UpdateTask(object taskModel)
+        public bool UpdateEndTask(object task)
         {
             _taskBL = new TaskBL();
-            _taskBL.UpdateTask(taskModel);
+            _taskBL.UpdateTask(task);
             return true;
         }
         [HttpPost]

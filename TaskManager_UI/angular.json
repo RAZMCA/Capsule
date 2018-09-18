@@ -1,9 +1,9 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "$schema": "../node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "task": {
+    "TaskManager": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/task",
+            "outputPath": "dist/TaskManager",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -23,11 +23,10 @@
               "src/assets"
             ],
             "styles": [
-              "D:/FSD/Capsule_UI/node_modules/bootstrap/dist/css/bootstrap.min.css",
-                "D:/FSD/Capsule_UI/src/styles.css"
+              "src/styles.css"
             ],
-            "scripts": [
-            ]
+            "scripts": [ 
+              ]
           },
           "configurations": {
             "production": {
@@ -52,18 +51,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "task:build"
+            "browserTarget": "TaskManager:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "task:build:production"
+              "browserTarget": "TaskManager:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "task:build"
+            "browserTarget": "TaskManager:build"
           }
         },
         "test": {
@@ -76,7 +75,6 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -97,7 +95,7 @@
         }
       }
     },
-    "task-e2e": {
+    "TaskManager-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -105,7 +103,12 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "task:serve"
+            "devServerTarget": "TaskManager:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "TaskManager:serve:production"
+            }
           }
         },
         "lint": {
@@ -120,5 +123,5 @@
       }
     }
   },
-  "defaultProject": "task"
+  "defaultProject": "TaskManager"
 }

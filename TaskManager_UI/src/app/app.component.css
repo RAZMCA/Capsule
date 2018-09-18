@@ -1,7 +1,7 @@
 
 header h1 { text-align: center; font-weight: bold; padding: 10px 0px; font-size: 20px; }
 .container .form-group { min-height: 35px; }
-.container .form-group label { width: 60%; float: left;
+.container .form-group label { width: 30%; float: left;
 	padding-top: 10px; }
 .container .form-group input, .container .date, .container .form-group select { width: 70%; float: left; }
 .container .date input  { width: 100%; float: none; }
@@ -31,4 +31,3 @@ header h1 { text-align: center; font-weight: bold; padding: 10px 0px; font-size:
 
 footer { padding: 10px 0px; }
 .frst-label{width:14% !important;}
-.containerDes{ border: 1px solid #ccc!important; border-radius: 16px; padding: 16px; background-color: #ececec; font-family:cursive; font-size: 0.8em;}
