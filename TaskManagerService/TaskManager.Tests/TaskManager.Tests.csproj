@@ -33,9 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -109,11 +111,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TaskManager.Data\TaskManager.Data.csproj">
-      <Project>{B568162A-2844-4EA8-8339-64D123543E73}</Project>
+      <Project>{b568162a-2844-4ea8-8339-64d123543e73}</Project>
       <Name>TaskManager.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\TaskManager\TaskManager.Api.csproj">
-      <Project>{993E4B47-AFF3-47D7-8733-F566CFE071C2}</Project>
+      <Project>{993e4b47-aff3-47d7-8733-f566cfe071c2}</Project>
       <Name>TaskManager.Api</Name>
     </ProjectReference>
   </ItemGroup>

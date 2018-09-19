@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Helpers;
 using TaskManager.Controllers;
 using TaskManager.Data.Models.Custom;
+using System.Web.Script.Serialization;
 
 namespace TaskManager.Tests
 {
@@ -36,7 +38,9 @@ namespace TaskManager.Tests
             addTask.EndDate = DateTime.Now;
             addTask.Priority = 15;
             addTask.ParentId = 3;
-            var isAdded = controller.InsertTaskDetails(addTask);
+            JavaScriptSerializer objJavascript = new JavaScriptSerializer();
+            var testModels = objJavascript.Serialize(addTask);
+            var isAdded = controller.InsertTaskDetails(testModels);
             Assert.AreEqual("ADD", isAdded);
         }
 
@@ -50,7 +54,9 @@ namespace TaskManager.Tests
             updateTask.EndDate = DateTime.Now;
             updateTask.Priority = 30;
             updateTask.ParentId = 2;
-            var isUpdated = controller.InsertTaskDetails(updateTask);
+            JavaScriptSerializer objJavascript = new JavaScriptSerializer();
+            var testModels = objJavascript.Serialize(updateTask);
+            var isUpdated = controller.InsertTaskDetails(testModels);
             Assert.AreEqual("UPDATE", isUpdated);
         }
 
@@ -64,7 +70,9 @@ namespace TaskManager.Tests
             endTask.EndDate = DateTime.Now;
             endTask.Priority = 30;
             endTask.ParentId = 2;
-            var isSuccess = controller.UpdateEndTask(endTask);
+            JavaScriptSerializer objJavascript = new JavaScriptSerializer();
+            var testModels = objJavascript.Serialize(endTask);
+            var isSuccess = controller.UpdateEndTask(testModels);
             Assert.AreEqual(true, isSuccess);
         }
     }

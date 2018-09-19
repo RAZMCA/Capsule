@@ -143,3 +143,5 @@ C:\Users\Capsule\API\TaskManagerService\TaskManager.Tests\bin\Debug\System.Web.H
 C:\Users\Capsule\API\TaskManagerService\TaskManager.Tests\obj\Debug\TaskManager.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Capsule\API\TaskManagerService\TaskManager.Tests\obj\Debug\TaskManager.Tests.dll
 C:\Users\Capsule\API\TaskManagerService\TaskManager.Tests\obj\Debug\TaskManager.Tests.pdb
+C:\Users\Capsule\API\TaskManagerService\TaskManager.Tests\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Capsule\API\TaskManagerService\TaskManager.Tests\bin\Debug\EntityFramework.SqlServer.xml
