@@ -21,49 +21,50 @@ namespace TaskManager.Tests
             Assert.IsTrue(result.Count > 0);
         }
         [TestMethod]
-        public void GetTaskById()
+        public void GetParentTask()
         {
-            var taskId = 1;
-            var result = controller.GetTaskById(taskId);
+            var result = controller.GetParentTask();
             Assert.IsTrue(result != null);
         }
+
         [TestMethod]
-        public void SearchTask()
-        {
-            TaskModel searchTask = new TaskModel();
-            searchTask.Task = "Task2";
-            var result = controller.SearchTask((object)searchTask);
-            Assert.IsTrue(result.Count > 0);
-        }
-        [TestMethod]
-        public void AddTask()
+        public void InsertTask()
         {
             TaskModel addTask = new TaskModel();
-            addTask.Task = "Design";
+            addTask.Task = "Task New";
             addTask.StartDate = DateTime.Now;
             addTask.EndDate = DateTime.Now;
             addTask.Priority = 15;
-            addTask.ParentId = null;
-            var isAdded = controller.AddTask(addTask);
-            Assert.AreEqual(true, isAdded);
+            addTask.ParentId = 3;
+            var isAdded = controller.InsertTaskDetails(addTask);
+            Assert.AreEqual("ADD", isAdded);
         }
+
         [TestMethod]
         public void UpdateTask()
         {
             TaskModel updateTask = new TaskModel();
-            updateTask.TaskId = 1;
-            updateTask.Task = "Coding";
+            updateTask.TaskId = 2005;
+            updateTask.Task = "Task from Test";
             updateTask.StartDate = DateTime.Now;
             updateTask.EndDate = DateTime.Now;
-            updateTask.Priority = 35;
-            updateTask.ParentId = null;
-            var isUpdated = controller.UpdateTask(updateTask);
-            Assert.AreEqual(true, isUpdated);
+            updateTask.Priority = 30;
+            updateTask.ParentId = 2;
+            var isUpdated = controller.InsertTaskDetails(updateTask);
+            Assert.AreEqual("UPDATE", isUpdated);
         }
+
         [TestMethod]
-        public void DeleteTask()
+        public void EndTask()
         {
-            var isSuccess = true;
+            TaskModel endTask = new TaskModel();
+            endTask.TaskId = 2005;
+            endTask.Task = "Task from Test";
+            endTask.StartDate = DateTime.Now;
+            endTask.EndDate = DateTime.Now;
+            endTask.Priority = 30;
+            endTask.ParentId = 2;
+            var isSuccess = controller.UpdateEndTask(endTask);
             Assert.AreEqual(true, isSuccess);
         }
     }
