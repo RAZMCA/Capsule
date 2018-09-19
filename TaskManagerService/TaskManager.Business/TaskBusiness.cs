@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Web.Script.Serialization;
-using TaskManager.Data.Models;
 using TaskManager.Data.Models.Custom;
 using TaskManager.Data.Repository;
 
@@ -12,101 +9,96 @@ namespace TaskManager.Business
     public class TaskBusiness
     {
         TaskRepository taskRepository;
+
+        #region GetParentTask
+        /// <summary>
+        /// Method to fetch the parent task details to load the parent task dropdown
+        /// </summary>
+        /// <returns></returns>
         public List<TaskModel> GetParentTask()
         {
             taskRepository = new TaskRepository();
             var result = taskRepository.GetParentTask();
             return result;
         }
+        #endregion
+
+        #region GetAllTask
+        /// <summary>
+        /// Method to fetch all the task details
+        /// </summary>
+        /// <returns></returns>
         public List<TaskModel> GetAllTask()
         {
             taskRepository = new TaskRepository();
             var result = taskRepository.GetAllTask();
             return result;
         }
-        //public List<TaskModel> SearchTask(object taskModel)
-        //{
-        //    TaskRepository obj = new TaskRepository();
-        //    var result = obj.SearchTask(ModelConverter(taskModel));
-        //    return result;
-        //}
-        //public TaskModel GetTaskById(int taskId)
-        //{
-        //    TaskRepository obj = new TaskRepository();
-        //    var result = obj.GetTaskById(taskId);
-        //    return result;
-        //}
-        public bool AddTask(object taskModel)
+        #endregion
+
+        #region InsertTask
+        /// <summary>
+        /// Method to insert the task details
+        /// </summary>
+        /// <param name="taskModel"></param>
+        /// <returns></returns>
+        public string InsertTask(object taskModel)
         {
+            string result = string.Empty;
             taskRepository = new TaskRepository();
-            taskRepository.InsertTask(ModelConverter(taskModel));
-            return true;
+            result = taskRepository.InsertTask(Converter(taskModel));
+            return result;
         }
+        #endregion
+
+        #region UpdateTask
+        /// <summary>
+        /// Method to end Task 
+        /// </summary>
+        /// <param name="taskModel"></param>
+        /// <returns></returns>
         public bool UpdateTask(object taskModel)
         {
             taskRepository = new TaskRepository();
-            taskRepository.UpdateTask(ModelConverter(taskModel));
-            return true;
+            return taskRepository.UpdateTask(Converter(taskModel));
         }
-        //public bool DeleteTask(int taskId)
-        //{
-        //    TaskRepository obj = new TaskRepository();
-        //    obj.DeleteTask(taskId);
-        //    return true;
-        //}
+        #endregion
 
-        private TaskModel ModelConverter(object task)
+        #region Converter
+        /// <summary>
+        /// Method to convert the incoming objects to models
+        /// </summary>
+        /// <param name="task"></param>
+        /// <returns></returns>
+        private TaskModel Converter(object task)
         {
             TaskModel taskModel = new TaskModel();
-            try
+            string details = task.ToString();
+            JavaScriptSerializer objJavascript = new JavaScriptSerializer();
+            var testModels = objJavascript.DeserializeObject(details);
+
+            if (testModels != null)
             {
-                taskModel = (TaskModel)task;
-                if (taskModel.StartDate != null)
-                    taskModel.StartDateString = taskModel.StartDate.ToString();
-                if (taskModel.EndDate != null)
-                    taskModel.EndDateString = taskModel.EndDate.ToString();
+                Dictionary<string, object> dic1 = (Dictionary<string, object>)testModels;
+                object value;
+
+                if (dic1.TryGetValue("Task", out value))
+                    taskModel.Task = value.ToString();
+                if (dic1.TryGetValue("ParentId", out value))
+                    taskModel.ParentId = string.IsNullOrWhiteSpace(value.ToString()) ? 0 : Convert.ToInt16(value);
+                if (dic1.TryGetValue("Priority", out value))
+                    taskModel.Priority = string.IsNullOrWhiteSpace(value.ToString()) ? 0 : Convert.ToInt16(value);
+                if (dic1.TryGetValue("StartDate", out value))
+                    taskModel.StartDateString = value.ToString();
+                if (dic1.TryGetValue("EndDate", out value))
+                    taskModel.EndDateString = value.ToString();
+                if (dic1.TryGetValue("TaskId", out value))
+                    taskModel.TaskId = string.IsNullOrWhiteSpace(value.ToString()) ? 0 : Convert.ToInt16(value);
                 return taskModel;
-            }
-            catch
-            {
-                string details = task.ToString();
-                JavaScriptSerializer objJavascript = new JavaScriptSerializer();
-                var testModels = objJavascript.DeserializeObject(details);
-
-                if (testModels != null)
-                {
-                    //Dictionary<string, object> dic = (Dictionary<string, object>)testModels;
-                    //foreach (var citem in dic)
-                    //{
-                    //    if (citem.Value != null && string.IsNullOrEmpty(citem.Value.ToString()))
-                    //    {
-                    Dictionary<string, object> dic1 = (Dictionary<string, object>)testModels;
-                    object value;
-                    
-                    if (dic1.TryGetValue("Task", out value))
-                        taskModel.Task = value.ToString();
-                    if (dic1.TryGetValue("ParentId", out value))
-                        taskModel.ParentId = string.IsNullOrWhiteSpace(value.ToString()) ? 0 : Convert.ToInt16(value);
-                    if (dic1.TryGetValue("Priority", out value))
-                        taskModel.Priority = string.IsNullOrWhiteSpace(value.ToString()) ? 0 : Convert.ToInt16(value);
-                    if (dic1.TryGetValue("StartDate", out value))
-                        taskModel.StartDateString = value.ToString();
-                    if (dic1.TryGetValue("EndDate", out value))
-                        taskModel.EndDateString = value.ToString();
-                    if (dic1.TryGetValue("TaskId", out value))
-                        taskModel.TaskId = string.IsNullOrWhiteSpace(value.ToString()) ? 0 : Convert.ToInt16(value);
-                    //if (dic1.TryGetValue("PriorityFrom", out value))
-                    //    taskModel.PriorityFrom = string.IsNullOrWhiteSpace(value.ToString()) ? 0 : Convert.ToInt16(value);
-                    //if (dic1.TryGetValue("PriorityTo", out value))
-                    //    taskModel.PriorityTo = string.IsNullOrWhiteSpace(value.ToString()) ? 0 : Convert.ToInt16(value);
-
-                    return taskModel;
-                    //    }
-                    //}
-                }
             }
 
             return taskModel;
         }
+        #endregion
     }
 }

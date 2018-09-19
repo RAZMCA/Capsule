@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonServiceService } from './services/common-service.service';
 import { Http, Response } from '@angular/http';
 import { PagerService } from './services/pageService';
-import { AlertsModule } from 'angular-alert-module';
 
 declare var $: any;
 
@@ -90,14 +89,15 @@ export class AppComponent implements OnInit {
       if (this.compareTwoDates(this.myForm.value)) {
 
         this.appServices.submitTask(this.myForm.value).subscribe(data => {
+
           if (data) {
-            alert(`Data ${data == 1 ? 'Added' : 'Updated'} successfully...`);
+            alert(`Task ${data == 'ADD' ? 'created' : 'updated'} successfully!`);
             this.myForm.reset();
             this.submitted = false;
             this.getTaskManager();
           }
           else {
-            alert('Please try again..');
+            alert('Oops! Something went wrong. Please try again...');
           }
         });
       }
@@ -110,14 +110,13 @@ export class AppComponent implements OnInit {
   };
 
   public EditTask(task) {
-    debugger;
     $('.task-manager-page a[href="#addTask"]').tab('show');
     if (task.StartDate != null)
       task.StartDate = task.StartDate.slice(0, -9);
     if (task.EndDate != null)
       task.EndDate = task.EndDate.slice(0, -9);
 
-      var vForm={ 
+      var modelConverter={ 
         StartDate: task.StartDate,
         EndDate: task.EndDate,
         TaskId: task.TaskId,
@@ -128,14 +127,14 @@ export class AppComponent implements OnInit {
         IsActive: task.IsActive
         
       };
-    this.myForm.setValue(vForm);
+    this.myForm.setValue(modelConverter);
   };
 
   public EndTask(task) {
     this.appServices.updateEndTask(task).subscribe(data => {
 
       this.getTaskManager();
-      alert(`Data updated successfully...`);
+      alert(`Task updated successfully!`);
     });
   }
 
@@ -168,7 +167,5 @@ export class AppComponent implements OnInit {
     else {
       return true;
     }
-
-
   }
 }

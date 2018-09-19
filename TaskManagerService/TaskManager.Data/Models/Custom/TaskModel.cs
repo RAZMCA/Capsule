@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TaskManager.Data.Models.Custom
 {
@@ -17,8 +13,6 @@ namespace TaskManager.Data.Models.Custom
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public Nullable<int> Priority { get; set; }
-        public Nullable<int> PriorityFrom { get; set; }
-        public Nullable<int> PriorityTo { get; set; }
         public Nullable<bool> IsActive { get; set; }
     }
 }

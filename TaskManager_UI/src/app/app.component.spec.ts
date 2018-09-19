@@ -38,28 +38,28 @@ describe('AppComponent', () => {
 
   const taskDetail: any = [
     {
-      "TaskId": "1",
+      "TaskId": 0,
       "ParentTask": 2,
-      "Task": "Test 2",
-      "StartDate": "09/07/2018",
-      "EndDate": "09/08/2018",
-      "Priority": 40
+      "Task": "Test A",
+      "StartDate": "09/19/2018",
+      "EndDate": "09/19/2018",
+      "Priority": 10
     },
     {
-      "TaskId": "2",
+      "TaskId": 0,
       "ParentTask": 2,
-      "Task": "Test 2",
-      "StartDate": "09/07/2018",
-      "EndDate": "09/08/2018",
-      "Priority": 40
+      "Task": "Test B",
+      "StartDate": "09/17/2018",
+      "EndDate": "09/18/2018",
+      "Priority": 20
     },
     {
-      "TaskId": "3",
+      "TaskId": 0,
       "ParentTask": 2,
-      "Task": "Test 3",
-      "StartDate": "09/08/2018",
-      "EndDate": "09/09/2018",
-      "Priority": 60
+      "Task": "Test C",
+      "StartDate": "09/18/2018",
+      "EndDate": "09/20/2018",
+      "Priority": 30
     }
   ];
 

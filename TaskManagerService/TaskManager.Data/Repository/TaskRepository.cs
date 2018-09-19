@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TaskManager.Data.Models;
 using TaskManager.Data.Models.Custom;
 
@@ -9,8 +8,9 @@ namespace TaskManager.Data.Repository
 {
     public class TaskRepository
     {
+        #region GetParentTask
         /// <summary>
-        /// GetParentTask
+        /// Method to get parent tasks
         /// </summary>
         /// <returns></returns>
         public List<TaskModel> GetParentTask()
@@ -27,16 +27,18 @@ namespace TaskManager.Data.Repository
                 return parentTasks;
             }
         }
+        #endregion 
 
+        #region GetAllTask
         /// <summary>
-        /// GetAllTask
+        /// Method to get all task
         /// </summary>
         /// <returns></returns>
         public List<TaskModel> GetAllTask()
         {
             using (TaskManagerEntities entity = new TaskManagerEntities())
             {
-                var taskList = (from task in entity.Tasks.Include("ParentTask")
+                var taskList = (from task in entity.Tasks.Include("ParentTask") orderby task.Task_Id descending
                                 select new TaskModel()
                                 {
                                     TaskId = task.Task_Id,
@@ -62,121 +64,43 @@ namespace TaskManager.Data.Repository
                 return taskList;
             }
         }
-        //public List<TaskModel> SearchTask(TaskModel taskModel)
-        //{
-        //    TaskManagerEntities entity = new TaskManagerEntities();
-        //    DateTime startDate = DateTime.Now;
-        //    DateTime endDate = DateTime.Now;
-        //    if (!string.IsNullOrEmpty(taskModel.StartDateString))
-        //        startDate = Convert.ToDateTime(taskModel.StartDateString);
-        //    if (!string.IsNullOrEmpty(taskModel.EndDateString))
-        //        endDate = Convert.ToDateTime(taskModel.EndDateString);
+        #endregion
 
-        //    var taskE = (from task in entity.Tasks.Include("ParentTask")                            
-        //                 select new TaskModel()
-        //                 {
-        //                     TaskId = task.Task_Id,
-        //                     Task = task.Task1,
-        //                     ParentTask = task.ParentTask.Parent_Task,
-        //                     Priority = task.Priority,
-        //                     StartDate = task.Start_Date,
-        //                     EndDate = task.End_Date,
-        //                     ParentId = task.ParentTask.Parent_Id,
-        //                 }).ToList();
-
-        //    List<TaskModel> allTask = taskE;
-        //    if (!string.IsNullOrEmpty(taskModel.Task))
-        //        allTask = allTask.Where(x => x.Task.ToUpper() == taskModel.Task.ToUpper()).ToList();
-        //    if (!string.IsNullOrEmpty(taskModel.ParentTask))
-        //        allTask = allTask.Where(x => x.ParentTask.ToUpper() == taskModel.ParentTask.ToUpper()).ToList();
-
-        //    int? startPriority = taskModel.PriorityFrom;
-        //    int? endPriority = taskModel.PriorityTo;
-        //    if (taskModel.PriorityFrom != null && taskModel.PriorityTo != null)
-        //        allTask = allTask.Where(x => x.Priority <= endPriority && x.Priority >= startPriority).ToList();
-        //    if (taskModel.PriorityFrom != null && taskModel.PriorityTo == null)
-        //        allTask = allTask.Where(x => x.Priority == startPriority).ToList();
-        //    if (taskModel.PriorityFrom == null && taskModel.PriorityTo != null)
-        //        allTask = allTask.Where(x => x.Priority == endPriority).ToList();
-
-        //    if (!string.IsNullOrEmpty(taskModel.StartDateString) && !string.IsNullOrEmpty(taskModel.EndDateString))
-        //        allTask = allTask.Where(x => x.StartDate <= endDate && x.EndDate >= startDate).ToList();
-        //    if (!string.IsNullOrEmpty(taskModel.StartDateString) && string.IsNullOrEmpty(taskModel.EndDateString))
-        //        allTask = allTask.Where(x => x.StartDate == startDate).ToList();
-        //    if (string.IsNullOrEmpty(taskModel.StartDateString) && !string.IsNullOrEmpty(taskModel.EndDateString))
-        //        allTask = allTask.Where(x => x.EndDate == endDate).ToList();
-
-
-        //    if (allTask != null)
-        //    {
-        //        foreach (var item in allTask)
-        //        {
-        //            if (item.StartDate != null)
-        //                item.StartDateString = item.StartDate.ToString();
-        //            if (item.EndDate != null)
-        //                item.EndDateString = item.EndDate.ToString();
-        //        }
-        //    }
-        //    return allTask;
-        //}
-        ///// <summary>
-        ///// GetTaskById
-        ///// </summary>
-        ///// <param name="taskId"></param>
-        ///// <returns></returns>
-
-        //public TaskModel GetTaskById(int taskId)
-        //{
-        //    TaskManagerEntities entity = new TaskManagerEntities();
-        //    var taskE = (from task in entity.Tasks.Include("ParentTask")
-        //                 where task.Task_Id == taskId
-        //                 select new TaskModel()
-        //                 {
-        //                     TaskId = task.Task_Id,
-        //                     Task = task.Task1,
-        //                     ParentTask = task.ParentTask.Parent_Task,
-        //                     Priority = task.Priority,
-        //                     StartDate = task.Start_Date,
-        //                     EndDate = task.End_Date,
-        //                     ParentId = task.ParentTask.Parent_Id,
-        //                 }).FirstOrDefault();
-        //    if (taskE != null)
-        //    {
-        //        if (taskE.StartDate != null)
-        //            taskE.StartDateString = taskE.StartDate.ToString();
-        //        if (taskE.EndDate != null)
-        //            taskE.EndDateString = taskE.EndDate.ToString();
-        //    }
-        //    return taskE;
-        //}
+        #region InsertTask
         /// <summary>
-        /// AddTask
+        /// Method to create new task or update an existing task
         /// </summary>
         /// <param name="taskModel"></param>
         /// <returns></returns>
-        public bool InsertTask(TaskModel taskModel)
+        public string InsertTask(TaskModel taskModel)
         {
+            string result =string.Empty;
             using (TaskManagerEntities entity = new TaskManagerEntities())
             {
-                Task addTask = new Task();
-                addTask.Task1 = taskModel.Task;
-                if (taskModel.StartDateString != null)
-                    addTask.Start_Date = Convert.ToDateTime(taskModel.StartDateString);
-                if (taskModel.EndDateString != null)
-                    addTask.End_Date = Convert.ToDateTime(taskModel.EndDateString);
-                addTask.Priority = taskModel.Priority;
-                addTask.Parent_Id = taskModel.ParentId;
-                addTask.Task_Id = taskModel.TaskId;
-                addTask.IsActive = true;
-                entity.Entry(addTask).State = addTask.Task_Id == 0 ? System.Data.EntityState.Added : System.Data.EntityState.Modified;
-                //entity.Tasks.Add(addTask);
-                entity.SaveChanges();
-                return true;
+                if (taskModel != null)
+                {
+                    Task addTask = new Task();
+                    addTask.Task1 = taskModel.Task;
+                    if (taskModel.StartDateString != null)
+                        addTask.Start_Date = Convert.ToDateTime(taskModel.StartDateString);
+                    if (taskModel.EndDateString != null)
+                        addTask.End_Date = Convert.ToDateTime(taskModel.EndDateString);
+                    addTask.Priority = taskModel.Priority;
+                    addTask.Parent_Id = taskModel.ParentId;
+                    addTask.Task_Id = taskModel.TaskId;
+                    addTask.IsActive = true;
+                    result = addTask.Task_Id == 0 ? "ADD" : "UPDATE";
+                    entity.Entry(addTask).State = addTask.Task_Id == 0 ? System.Data.Entity.EntityState.Added : System.Data.Entity.EntityState.Modified;
+                    entity.SaveChanges();
+                }
             }
+            return result;
         }
+        #endregion
 
+        #region UpdateTask
         /// <summary>
-        /// UpdateTask
+        /// Method to end task
         /// </summary>
         /// <param name="taskModel"></param>
         /// <returns></returns>
@@ -184,37 +108,25 @@ namespace TaskManager.Data.Repository
         {
             using (TaskManagerEntities entity = new TaskManagerEntities())
             {
-                var taskE = entity.Tasks.Where(x => x.Task_Id == taskModel.TaskId).FirstOrDefault();
-                if (taskE != null)
+                if (taskModel != null && taskModel.TaskId != 0)
                 {
-                    taskE.Task1 = taskModel.Task;
+                    Task endTask = new Task();
+                    endTask.Task_Id = taskModel.TaskId;
+                    endTask.Task1 = taskModel.Task;
                     if (taskModel.StartDateString != null)
-                        taskE.Start_Date = Convert.ToDateTime(taskModel.StartDateString);
+                        endTask.Start_Date = Convert.ToDateTime(taskModel.StartDateString);
                     if (taskModel.EndDateString != null)
-                        taskE.End_Date = Convert.ToDateTime(taskModel.EndDateString);
-                    taskE.Priority = taskModel.Priority;
-                    taskE.Parent_Id = taskModel.ParentId;
+                        endTask.End_Date = Convert.ToDateTime(taskModel.EndDateString);
+                    endTask.Priority = taskModel.Priority;
+                    endTask.Parent_Id = taskModel.ParentId;
+                    endTask.IsActive = false;
+                    entity.Entry(endTask).State = System.Data.Entity.EntityState.Modified;
                     entity.SaveChanges();
                 }
                 return true;
             }
             
         }
-        /// <summary>
-        /// DeleteTask
-        /// </summary>
-        /// <param name="taskId"></param>
-        /// <returns></returns>
-        //public bool DeleteTask(int taskId)
-        //{
-        //    TaskManagerEntities entity = new TaskManagerEntities();
-        //    var taskE = entity.Tasks.Where(x => x.Task_Id == taskId).FirstOrDefault();
-        //    if (taskE != null)
-        //    {
-        //        entity.Tasks.Remove(taskE);
-        //        entity.SaveChanges();
-        //    }
-        //    return true;
-        //}
+        #endregion
     }
 }

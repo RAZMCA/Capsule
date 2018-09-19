@@ -29,7 +29,7 @@ header h1 { text-align: center; font-weight: bold; padding: 10px 0px; font-size:
 .task-table .table>tbody>tr>td:last-child { text-align: center; }
 .task-table .table>tbody>tr>td:last-child button { margin-right: 10px; }
 
-footer { padding: 10px 0px; }
+footer { padding: 10px 0px; font-size: 0.9em; text-align: right;}
 .frst-label{width:14% !important;}
 
 /*Bootstrap button outline override*/
