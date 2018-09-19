@@ -23,7 +23,7 @@
 										<div class="col-sm-6 col-sm-offset-3">
 											<div class="form-group ">
 												<label for="task">Task:</label>
-												<input type="hidden" class="form-control" id="Task_Id" name="Task_Id" formControlName="Task_Id">
+												<input type="hidden" class="form-control" id="TaskId" name="TaskId" formControlName="TaskId">
 												<input type="text" class="form-control" id="task" name="Task" formControlName="Task">
 												<div class="clearfix"></div>
 											</div>
@@ -38,7 +38,7 @@
 												<div class="form-slider">
 													<input type="range" min="0" max="30" class="slider" step="1" value="0" name="Priority" id="myRangeIn"
 													 formControlName="Priority" oninput="myRangeOutId.value = myRangeIn.value" />
-													 <b><output name="PriorityOut" id="myRangeOutId">15</output></b>
+													 <b><output name="PriorityOut" id="myRangeOutId">{{Priority}}</output></b>
 												</div>
 												<div class="clearfix"></div>
 											</div>
@@ -50,9 +50,9 @@
 										<div class="col-sm-6 col-sm-offset-3">
 											<div class="form-group">
 												<label for="task">Parent Task:</label>
-												<select class="form-control" name="Parent_Id" formControlName="Parent_Id">  
+												<select class="form-control" name="ParentId" formControlName="ParentId">  
 														<option selected="--Select Task--" value="" class="ng-binding">--Select Task--</option>  
-														<option [ngValue]="parentTask.Parent_Id" *ngFor="let parentTask of parentTaskList">  
+														<option [ngValue]="parentTask.ParentId" *ngFor="let parentTask of parentTaskList">  
 															{{parentTask.ParentTask}}  
 														</option>  
 														</select>
@@ -92,8 +92,8 @@
 									<div class="col-sm-12">
 										<div class="col-sm-6 col-sm-offset-3">
 											<div class="form-group form-btns">
-												<button class="btn btn-primary-outline btn-sm" ng-disabled="myForm.form.valid">{{ myForm.get('Task_Id').value ? 'Update' : 'Add' }} Task</button>
-												<button type="button" class="btn btn-default btn-sm" (click)="ResetTask()">Reset</button>
+												<button class="btn btn-outline btn-sm" ng-disabled="myForm.form.valid">{{ myForm.get('TaskId').value ? 'Update' : 'Add' }} Task</button>
+												<button type="button" class="btn btn-outline btn-sm" (click)="ResetTask()">Reset</button>
 											</div>
 										</div>
 									</div>
@@ -120,7 +120,7 @@
 
 												<select class="form-control" [(ngModel)]="search.parentTaskSearch" name="parentTaskSearch">  
 														<option selected="--Select Task--" value="0">--Select Task--</option>  
-														<option [ngValue]="parentTask.Parent_Id" *ngFor="let parentTask of parentTaskList">  
+														<option [ngValue]="parentTask.ParentId" *ngFor="let parentTask of parentTaskList">  
 															{{parentTask.ParentTask}}  
 														</option>  
 													</select>
@@ -181,7 +181,7 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr *ngFor="let task of pagedItems | filter : { Task : search.taskSearch, StartDate : search.startDateSearch, EndDate : search.endDateSearch, Parent_Id : search.parentTaskSearch, PriorityFrom : search.priorityFromSearch, PriorityTo : search.priorityToSearch } ">
+													<tr *ngFor="let task of pagedItems | filter : { Task : search.taskSearch, StartDate : search.startDateSearch, EndDate : search.endDateSearch, ParentId : search.parentTaskSearch, PriorityFrom : search.priorityFromSearch, PriorityTo : search.priorityToSearch } ">
 														<td align="center">{{task.TaskId}}</td>
 														<td align="center">{{task.ParentTask}}</td>
 														<td align="center">{{task.Task}}</td>
@@ -189,8 +189,8 @@
 														<td align="center">{{task.EndDate | date: 'MM/dd/yyyy'}}</td>
 														<td align="center">{{task.Priority}}</td>
 														<td>
-															<button class="btn btn-outline-primary btn-sm" (click)="EditTask(task)" [disabled]="!task.IsActive">Edit</button>
-															<button class="btn btn-outline-primary btn-sm" (click)="EndTask(task)" [disabled]="!task.IsActive">End Task</button>
+															<button class="btn btn-outline btn-sm" (click)="EditTask(task)" [disabled]="!task.IsActive">Edit</button>
+															<button class="btn btn-outline btn-sm" (click)="EndTask(task)" [disabled]="!task.IsActive">End Task</button>
 														</td>
 													</tr>
 													<tr *ngIf="task?.length">
@@ -239,6 +239,6 @@
 		</section>
 	</div>
 	<footer>
-		Copyright &copy; 2018 @Raj Muhammad
+		Copyright @Raj Muhammad &copy; 2018
 	</footer>
 </div>

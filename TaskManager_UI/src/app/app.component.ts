@@ -5,7 +5,6 @@ import { CommonServiceService } from './services/common-service.service';
 import { Http, Response } from '@angular/http';
 import { PagerService } from './services/pageService';
 import { AlertsModule } from 'angular-alert-module';
-//import Swal from 'sweetalert2';
 
 declare var $: any;
 
@@ -51,13 +50,14 @@ export class AppComponent implements OnInit {
   public ngOnInit() {
 
     this.myForm = this.fb.group({
-      Task_Id: [''],
+      TaskId: [''],
       Task: ['', Validators.required],
       Priority: [15, Validators.required],
-      Parent_Id: [''],
+      ParentId: [''],
+      ParentTask:[''],
       StartDate: ['', Validators.required],
       EndDate: [''],
-      IsActive: [''],
+      IsActive: ['']
     });
 
     this.appServices.getParentTask().subscribe(data => {
@@ -91,20 +91,17 @@ export class AppComponent implements OnInit {
 
         this.appServices.submitTask(this.myForm.value).subscribe(data => {
           if (data) {
-            //Swal('success', `Data ${data == 1 ? 'Added' : 'Updated'} successfully...`, 'success');
             alert(`Data ${data == 1 ? 'Added' : 'Updated'} successfully...`);
             this.myForm.reset();
             this.submitted = false;
             this.getTaskManager();
           }
           else {
-            //Swal('Failed', 'Please try again..', 'error');
             alert('Please try again..');
           }
         });
       }
       else {
-        //Swal('Failed', 'End Date should be greater than Start Date', 'error');
         alert('End Date should be greater than Start Date');
       }
 
@@ -113,19 +110,31 @@ export class AppComponent implements OnInit {
   };
 
   public EditTask(task) {
+    debugger;
     $('.task-manager-page a[href="#addTask"]').tab('show');
     if (task.StartDate != null)
       task.StartDate = task.StartDate.slice(0, -9);
     if (task.EndDate != null)
       task.EndDate = task.EndDate.slice(0, -9);
-    this.myForm.setValue(task);
+
+      var vForm={ 
+        StartDate: task.StartDate,
+        EndDate: task.EndDate,
+        TaskId: task.TaskId,
+        Task: task.Task,
+        ParentTask: task.ParentTask,
+        ParentId: task.ParentId,
+        Priority: task.Priority,
+        IsActive: task.IsActive
+        
+      };
+    this.myForm.setValue(vForm);
   };
 
   public EndTask(task) {
     this.appServices.updateEndTask(task).subscribe(data => {
 
       this.getTaskManager();
-      //Swal('success', `Data updated successfully...`, 'success');
       alert(`Data updated successfully...`);
     });
   }
@@ -156,7 +165,7 @@ export class AppComponent implements OnInit {
       else
         return true;
     }
-    else{
+    else {
       return true;
     }
 

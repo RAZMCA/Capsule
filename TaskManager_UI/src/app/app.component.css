@@ -2,14 +2,14 @@
 header h1 { text-align: center; font-weight: bold; padding: 10px 0px; font-size: 20px; }
 .container .form-group { min-height: 35px; }
 .container .form-group label { width: 30%; float: left;
-	padding-top: 10px; }
+	padding-top: 10px; font-size: 0.9em; }
 .container .form-group input, .container .date, .container .form-group select { width: 70%; float: left; }
 .container .date input  { width: 100%; float: none; }
 .tab-pane { border: 1px solid #ddd; border-radius:0px 0px 5px 5px; border-top:0; padding: 15px 0px; }
 .nav.nav-tabs .active { font-weight: bold; }
-.nav.nav-tabs a { border: 1px solid #ddd; margin-right: 7px; }
-.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover { background: #ddd; border: 1px solid #ddd;
-	color: #333; }
+.nav.nav-tabs a { border: 1px solid #ddd; margin-right: 7px; font-size: 0.8em; }
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover { background: rgb(232, 231, 235); border: 1px solid #ddd;
+	color: #3c81c2; }
 .form-slider { width: 70%; float: left; margin-top: 8px; }
 .form-slider b { float: left; width: 20px; display: inline-block; margin-right: 10px;padding-top: 3px; }
 .form-slider input + b { float: left; width: 20px; display: inline-block; margin-left:10px; margin-right: 0; }
@@ -21,13 +21,22 @@ header h1 { text-align: center; font-weight: bold; padding: 10px 0px; font-size:
 .form-btns button { margin-right: 10px; width: 100px; }
 
 .task-table { width: 95%; margin: 0 auto; }
-.task-table table thead th { color: #fff; background: #6b7881; border-color: #ddd; text-align: center; }
+.task-table table thead th { color: #fff; background: #3c81c2; border-color: #ddd; text-align: center; }
 .task-table table thead th:first-child { border-left: 0; }
 .task-table table thead th:last-child { }
 .table-bordered { border: 0; margin-bottom: 0; }
-.task-table .table>tbody>tr>td { vertical-align: middle; } 
+.task-table .table>tbody>tr>td { vertical-align: middle;font-size: 0.9em; } 
 .task-table .table>tbody>tr>td:last-child { text-align: center; }
 .task-table .table>tbody>tr>td:last-child button { margin-right: 10px; }
 
 footer { padding: 10px 0px; }
 .frst-label{width:14% !important;}
+
+/*Bootstrap button outline override*/
+.btn-outline {
+	background-color: transparent;
+	border-color: #428bca;
+    color: #428bca;/*inherit;*/
+    transition: all .5s;
+}
+.btn-outline:hover { color: #fff; background-color: #3c81c2; border-color: #3c81c2; }

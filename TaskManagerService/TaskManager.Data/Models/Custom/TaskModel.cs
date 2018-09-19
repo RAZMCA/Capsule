@@ -19,5 +19,6 @@ namespace TaskManager.Data.Models.Custom
         public Nullable<int> Priority { get; set; }
         public Nullable<int> PriorityFrom { get; set; }
         public Nullable<int> PriorityTo { get; set; }
+        public Nullable<bool> IsActive { get; set; }
     }
 }

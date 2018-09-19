@@ -19,7 +19,7 @@
     <Property Name="End_Date" Type="DateTime" Precision="3" />
     <Property Name="Priority" Type="Int32" />
     <NavigationProperty Name="ParentTask" Relationship="Self.FK_Task_Task" FromRole="Task" ToRole="ParentTask" />
-    <Property Name="IsActive" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
   </EntityType>
   <Association Name="FK_Task_Task">
     <End Role="ParentTask" Type="Self.ParentTask" Multiplicity="0..1" />

@@ -6,8 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterPipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
-    if(args.Parent_ID){
-       value = value.filter(task => task.Parent_ID == args.Parent_ID);
+    if(args.ParentId){
+       value = value.filter(task => task.ParentId == args.ParentId);
     }
     if(args.Task){
        value = value.filter(task => task.Task.toLowerCase().indexOf(args.Task.toLowerCase()) != -1);

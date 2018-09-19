@@ -13,58 +13,58 @@ namespace TaskManager.Controllers
 {
     public class TaskController : ApiController
     {
-        TaskBL _taskBL; 
+        TaskBusiness taskBusiness; 
 
         [HttpGet]
         public List<TaskModel> GetParentTask()
         {
-            _taskBL = new TaskBL();
-            var result = _taskBL.GetParentTask();
+            taskBusiness = new TaskBusiness();
+            var result = taskBusiness.GetParentTask();
             return result;
         }
 
         [HttpGet]
         public List<TaskModel> GetAllTask()
         {
-            _taskBL = new TaskBL();
-            var result = _taskBL.GetAllTask();
+            taskBusiness = new TaskBusiness();
+            var result = taskBusiness.GetAllTask();
             return result;
         }
-        [HttpGet]
-        public TaskModel GetTaskById(int taskId)
-        {
-            _taskBL = new TaskBL();
-            var result = _taskBL.GetTaskById(taskId);
-            return result;
-        }
-        [HttpPost]
-        public List<TaskModel> SearchTask(object taskModel)
-        {
-            _taskBL = new TaskBL();
-            var result = _taskBL.SearchTask(taskModel);
-            return result;
-        }
+        //[HttpGet]
+        //public TaskModel GetTaskById(int taskId)
+        //{
+        //    _taskBL = new TaskBL();
+        //    var result = _taskBL.GetTaskById(taskId);
+        //    return result;
+        //}
+        //[HttpPost]
+        //public List<TaskModel> SearchTask(object taskModel)
+        //{
+        //    _taskBL = new TaskBL();
+        //    var result = _taskBL.SearchTask(taskModel);
+        //    return result;
+        //}
         [HttpPost]
         public bool InsertTaskDetails(object task)
         {
-            _taskBL = new TaskBL();
-            _taskBL.AddTask(task);
+            taskBusiness = new TaskBusiness();
+            taskBusiness.AddTask(task);
             return true;
         }
         [HttpPost]
         public bool UpdateEndTask(object task)
         {
-            _taskBL = new TaskBL();
-            _taskBL.UpdateTask(task);
+            taskBusiness = new TaskBusiness();
+            taskBusiness.UpdateTask(task);
             return true;
         }
-        [HttpPost]
-        public bool DeleteTask(int taskId)
-        {
-            _taskBL = new TaskBL();
-            _taskBL.DeleteTask(taskId);
-            return true;
-        }
+        //[HttpPost]
+        //public bool DeleteTask(int taskId)
+        //{
+        //    _taskBL = new TaskBL();
+        //    _taskBL.DeleteTask(taskId);
+        //    return true;
+        //}
 
        
     }

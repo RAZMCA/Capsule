@@ -10,7 +10,6 @@ import { CommonServiceService } from './services/common-service.service';
 import { FilterPipe } from './pipes/filter.pipe';
 import { PagerService } from './services/pageService';
 import { AlertsModule } from 'angular-alert-module';
-//import Swal from 'sweetalert2';
 import { Observable, of } from 'rxjs';
 
 describe('AppComponent', () => {
@@ -80,7 +79,7 @@ describe('AppComponent', () => {
     },
 
     updateEndTask(task): Observable<any> {
-      let idx = taskDetail.findIndex(x => x.Task_ID == task.Task_ID);
+      let idx = taskDetail.findIndex(x => x.TaskId == task.TaskId);
       if (idx !== -1) {
         taskDetail[idx] = task;
       }

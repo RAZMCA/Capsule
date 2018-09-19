@@ -17,7 +17,7 @@
     <Property Name="Start_Date" Type="datetime" />
     <Property Name="End_Date" Type="datetime" />
     <Property Name="Priority" Type="int" />
-    <Property Name="IsActive" Type="int" />
+    <Property Name="IsActive" Type="bit" />
   </EntityType>
   <Association Name="FK_Task_Task">
     <End Role="ParentTask" Type="Self.ParentTask" Multiplicity="0..1" />
