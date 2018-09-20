@@ -1,7 +1,9 @@
 import { Component,NgModule,Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-var apiURL="http://localhost:33424/";
+// var apiURL="http://localhost:33424/";
+
+var apiURL="http://localhost:1234/";
 
 @Injectable({
   providedIn: 'root'

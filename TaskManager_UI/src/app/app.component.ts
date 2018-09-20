@@ -38,6 +38,8 @@ export class AppComponent implements OnInit {
     startDateSearch: '',
     endDateSearch: ''
   }
+  Priority: any;
+  task:any;
 
   submitted: boolean = false;
   myForm: FormGroup;

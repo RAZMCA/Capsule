@@ -2,7 +2,6 @@
 
 namespace TaskManager.Data.Models.Custom
 {
-    [Serializable]
     public class TaskModel
     {
         public int TaskId { get; set; }
