@@ -193,3 +193,4 @@ C:\Users\Capsule\API\TaskManagerService\TaskManager\bin\System.Web.Http.Owin.xml
 C:\Users\Capsule\API\TaskManagerService\TaskManager\obj\Debug\TaskManager.Api.csprojResolveAssemblyReference.cache
 C:\Users\Capsule\API\TaskManagerService\TaskManager\obj\Debug\TaskManager.dll
 C:\Users\Capsule\API\TaskManagerService\TaskManager\obj\Debug\TaskManager.pdb
+C:\Users\Capsule\API\TaskManagerService\TaskManager\bin\NBench.dll
